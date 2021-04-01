@@ -1,22 +1,31 @@
 class Cliente {
   nome;
   cpf;
+  contaCorrente;
+}
+
+class ContaCorrente {
   agencia;
   saldo;
-  rg;
+
+  sacar(valor) {
+    if (valor <= this.saldo) {
+      this.saldo -= valor;
+    } else {
+      console.log("Saldo insuficiente");
+    }
+  }
 }
 
 const cliente1 = new Cliente();
 cliente1.nome = "Daniel";
 cliente1.cpf = 11122233300;
-cliente1.agencia = 1001;
-cliente1.saldo = 0;
-cliente1.rg = 112223334
 
-const cliente2 = new Cliente();
-cliente2.nome = "Eliana";
-cliente2.cpf = 22233344400;
-cliente2.agencia = 1001;
-cliente2.saldo = 0;
 
-console.log(cliente1, cliente2)
+const contaCorrente1 = new ContaCorrente();
+cliente1.contaCorrente = contaCorrente1;
+contaCorrente1.agencia = 1001;
+contaCorrente1.saldo = 1000;
+contaCorrente1.sacar(1)
+console.log(contaCorrente1.saldo)
+console.log(cliente1);
