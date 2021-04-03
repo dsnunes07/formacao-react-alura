@@ -1,3 +1,4 @@
+// Classe abstrata - só funciona para ser herdada - não pode ser instanciada diretamente
 export class Conta {
   constructor(saldoInicial, cliente, agencia) {
     if (this.constructor == Conta) {
