@@ -13,3 +13,4 @@ No curso JavaScript - Orientação a Objetos foram abordados os seguintes tópic
 - Interfaces
 - Classes abstratas: não podem ser instanciadas diretamente, mas só herdadas.
 - Métodos abstratas: precisam ser implementados por quem os herda
+- Ducky type: definir o tratamento de um parâmetro por seus atributos e métodos, sem conhecer seu tipo explicitamente.
