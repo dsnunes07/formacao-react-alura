@@ -6,7 +6,7 @@ export class ContaPoupanca extends Conta{
   }
 
   sacar(valor) {
-    let taxa = 1.05;
+    let taxa = 1.02;
     return this._sacar(valor, taxa);
   }
 }
