@@ -5,12 +5,21 @@ class FormularioCadastro extends Component {
     super(props);
     this.title = "";
     this.content = "";
+    this.category = "Sem categoria";
   }
 
   render() {
     return (
-      <form className="form-cadastro"
-        onSubmit={this._createCard.bind(this)}>
+      <form className="form-cadastro" onSubmit={this._createCard.bind(this)}>
+        <select
+          className="form-cadastro_input"
+          onChange={this._handleCategoryChange.bind(this)}
+        >
+          <option>Sem categoria</option>
+          {this.props.categorias.map((categoria, index) => {
+            return <option key={index}>{categoria}</option>;
+          })}
+        </select>
         {/*o this no javascript é dinâmico, então é preciso 
         explicitar para a chamada da função a qual instância nos referimos*/}
         <input
@@ -35,19 +44,22 @@ class FormularioCadastro extends Component {
   _handleTitleChange(event) {
     event.stopPropagation();
     this.title = event.target.value;
-    console.log(this.title)
   }
 
   _handleNoteChange(event) {
     event.stopPropagation();
-    this.note = event.target.value
-    console.log(this.note);
+    this.note = event.target.value;
+  }
+
+  _handleCategoryChange(event) {
+    event.stopPropagation();
+    this.category = event.target.value;
   }
 
   _createCard(event) {
     event.preventDefault();
     event.stopPropagation();
-    this.props.createCard(this.title, this.note);
+    this.props.createCard(this.title, this.note, this.category);
   }
 }
 

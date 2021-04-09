@@ -13,12 +13,13 @@ class App extends Component {
     super();
     this.state = {
       notas: [],
-      categorias: []
+      categorias: ["Games", "Música"],
     };
   }
 
-  createCard(title, content) {
-    const newNote = { title, content };
+  createCard(title, content, category) {
+    console.log(category);
+    const newNote = { title, content, category };
     const newNoteArray = [...this.state.notas, newNote];
     const newState = {
       notas: newNoteArray,
@@ -42,7 +43,10 @@ class App extends Component {
   render() {
     return (
       <section className="conteudo">
-        <FormularioCadastro createCard={this.createCard.bind(this)} />
+        <FormularioCadastro
+          createCard={this.createCard.bind(this)}
+          categorias={this.state.categorias}
+        />
         <main className="conteudoPrincipal">
           <ListaDeCategorias
             categorias={this.state.categorias}
