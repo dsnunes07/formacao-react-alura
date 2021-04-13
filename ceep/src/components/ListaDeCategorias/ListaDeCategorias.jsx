@@ -1,35 +1,37 @@
-import { Component } from "react";
-import "./estilo.css"
-
+import React, { Component } from "react";
+import "./estilo.css";
 class ListaDeCategorias extends Component {
 
-  constructor() {
+  constructor(){
     super();
-    this.state = { categorias: [] }
+    this.state = {categorias:[]}
+    this._novasCategorias = this._novasCategorias.bind(this);
   }
-
-  componentDidMount() {
+  componentDidMount(){
     this.props.categorias.inscrever(this._novasCategorias);
   }
 
-  _novasCategorias(categorias) {
-    this.setState({ ...this.state, categorias })
+  componentWillUnmount(){
+    this.props.categorias.desinscrever(this._novasCategorias);
+  }
+  
+  _novasCategorias(categorias){
+   this.setState({...this.state,categorias})
   }
 
-  _handleEventoInput(event) {
-    if (event.key === "Enter") {
-      let category = event.target.value;
-      this.props.addCategory(category);
+  _handleEventoInput(e) {
+    if (e.key == "Enter") {
+      let valorCategoria = e.target.value;
+      this.props.adicionarCategoria(valorCategoria);
     }
   }
-
   render() {
     return (
       <section className="lista-categorias">
         <ul className="lista-categorias_lista">
           {this.state.categorias.map((categoria, index) => {
             return (
-              <li className="lista-categorias_item" key={index}>
+              <li key={index} className="lista-categorias_item">
                 {categoria}
               </li>
             );
@@ -38,7 +40,7 @@ class ListaDeCategorias extends Component {
         <input
           type="text"
           className="lista-categorias_input"
-          placeholder="add categoria"
+          placeholder="Adicionar Categoria"
           onKeyUp={this._handleEventoInput.bind(this)}
         />
       </section>
