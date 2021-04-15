@@ -9,6 +9,7 @@ function RegisterForm(props) {
   const [cpf, setcpf] = useState();
   const [novidades, setnovidades] = useState(true);
   const [promotions, setpromotions] = useState(true);
+  const [erros, seterros] = useState({ cpf: { valid: true, helperText: "" } });
   return (
     <form
       onSubmit={(event) => {
@@ -51,9 +52,15 @@ function RegisterForm(props) {
         id="taxpayerRegistry"
         fullWidth={true}
         margin="normal"
+        error={!erros.cpf.valid}
+        helperText={erros.cpf.helperText}
         onChange={(event) => {
           const cpf = event.target.value;
           setcpf(cpf);
+        }}
+        onBlur={(event) => {
+          const validation = props.validateCPF(event.target.value);
+          seterros({ cpf: validation });
         }}
       />
       <FormControlLabel
